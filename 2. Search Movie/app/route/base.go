@@ -6,6 +6,7 @@ import (
 
 	"project/app/config"
 	"project/app/delivery/http"
+	"project/app/middleware"
 
 	"github.com/gin-gonic/gin"
 )
@@ -37,7 +38,7 @@ func (r *route) Router(port string) {
 
 	// init new gin
 	routes := gin.New()
-	routes.Use(gin.Recovery())
+	routes.Use(gin.Recovery(), middleware.Logger)
 
 	// endpoint
 	routes.GET("/", r.hd.SearchMovie)
