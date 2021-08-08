@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package pb;
+
+option go_package = "../pb";
+
+message Empty {}
+
+message SearchMovieRequest {
+    string searchword = 1;
+    string pagination = 2;
+}
+
+message Search {
+    string Title = 1;
+    string Year = 2;
+    string imdbID = 3;
+    string Type = 4;
+    string Poster = 5;
+}
+
+message OMDBResponse {
+    repeated Search Search = 1;
+    string TotalResults = 2;
+    string Response = 3;
+    string Error = 4;
+}
+
+service SearchService {
+    rpc SearchMovie(SearchMovieRequest) returns (OMDBResponse) {}
+}
